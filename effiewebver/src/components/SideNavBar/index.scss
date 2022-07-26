@@ -1,0 +1,90 @@
+.sidenavbar {
+  display: flex;
+  flex-direction: column;
+  width: 160px;
+  height: 100%;
+  padding: 0 20px;
+  font-size: 14px;
+  background: #e7e7e7;
+  color: #111;
+  .sidenavbar-top {
+    flex: 1;
+    padding: 20px 0;
+    .sidenavbar-top-create-notes {
+      padding-bottom: 12px;
+      border-bottom: 1px solid #ccc;
+      color: #111;
+      .create-note-btn {
+        display: flex;
+        align-items: center;
+        padding: 4px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        .icon {
+          font-size: 12px;
+        }
+        .title {
+          margin-left: 10px;
+        }
+        &:hover {
+          background: #cfcfcf;
+        }
+      }
+    }
+    .sidenavbar-top-menu-item {
+      margin-top: 10px;
+      .search-div {
+        padding: 4px 0;
+        .search {
+          padding: 6px 10px;
+          border-radius: 5px;
+          &:hover {
+            background: #cfcfcf;
+            cursor: pointer;
+          }
+          &.active {
+            background: #cfcfcf;
+          }
+        }
+      }
+      .icon {
+        font-size: 14px;
+        margin-right: 8px;
+      }
+      ul {
+        li {
+          padding: 4px 0;
+          a {
+            display: flex;
+            align-items: center;
+            padding: 6px 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #111;
+            &:hover {
+              background: #cfcfcf;
+              cursor: pointer;
+            }
+            &.active {
+              background: #cfcfcf;
+            }
+          }
+        }
+      }
+    }
+  }
+  .sidenavbar-bottom {
+    padding: 8px 15px;
+    // border-top: 1px solid #555;
+    .sidenavbar-bottom {
+      display: flex;
+      align-items: center;
+      padding: 8px;
+      .icon {
+        font-size: 14px;
+        margin-right: 8px;
+      }
+    }
+  }
+}
+
