@@ -17,19 +17,13 @@ interface IState {
 }
 
 class SideNavBar extends React.Component<IProps, IState> {
-  props = {
-    x,
-    y,
-    showMenu
-  }
-
   state = {
     visible: false
   }
 
   componentDidMount() {
     // 添加右键点击、点击事件监听
-    
+    console.log(this.props)
   }
 
   componentWillUnmount() {
