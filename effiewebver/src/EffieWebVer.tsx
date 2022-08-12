@@ -1,5 +1,6 @@
 import React from 'react'
 
+import { Helmet } from 'react-helmet'
 import Note from './components/Note'
 import NoteList from './components/NoteList'
 import SideNavbar from './components/SideNavBar'
@@ -12,15 +13,15 @@ import {
   Route
 } from 'react-router-dom'
 
-import useRightClickMenu from './hooks/useRightClickMenu'
-
 const EffieWebVer = () => {
-  const { x, y, showMenu } = useRightClickMenu()
-
   return (
     <Router>
       <div className="EffieWebVer">
-        <SideNavbar x={x} y={y} showMenu={showMenu} />
+        <Helmet>
+          <title>EffieWebVer</title>
+          <meta name='description' content='EffieWebVer' />
+        </Helmet>
+        <SideNavbar />
         <Routes>
           <Route path="/all-notes" element={ <NoteList title="All Notes" /> } />
           <Route path="/all-notes/:ids" element={ <Note /> } />

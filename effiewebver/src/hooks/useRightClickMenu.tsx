@@ -1,4 +1,7 @@
 import { useState, useEffect } from 'react'
+import jquery from 'jquery'
+
+const $: JQueryStatic = jquery
 
 const useRightClickMenu = () => {
   const [x, setX] = useState(0)
@@ -8,9 +11,11 @@ const useRightClickMenu = () => {
   const handleContextMenu = (e: MouseEvent) => {
     e.preventDefault()
 
-    setX(e.pageX)
-    setY(e.pageY)
-    setShowMenu(true)
+    if($(e.target as Element).attr('class') === 'sidenavbar-top' || $(e.target as Element).attr('class') === 'note-list-body') {
+      setX(e.pageX)
+      setY(e.pageY)
+      setShowMenu(true)
+    }
   }
 
   const handleClick = () => {
