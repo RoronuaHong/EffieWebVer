@@ -9,7 +9,10 @@ interface IProps {
 export interface EffieContext {
   EffieInfo: Object
   setEffieInfo: Function
-  EffieDispatch: any
+  EffieDispatch: React.Dispatch<{
+    type: string
+    payload: number
+  }>
 }
 
 // children?: React.ReactNode;

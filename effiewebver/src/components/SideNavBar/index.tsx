@@ -1,6 +1,6 @@
 import React, { FC, ReactElement, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus, faTrashCan, faSearch, faBook, faEnvelope, faExclamation, faDownload, faBriefcase , faUpload } from '@fortawesome/free-solid-svg-icons'
+import { faPlus, faTrashCan, faSearch, faBook, faEnvelope, faExchange, faDownload, faBriefcase , faUpload } from '@fortawesome/free-solid-svg-icons'
 
 import { NavLink } from 'react-router-dom'
 
@@ -10,7 +10,7 @@ import useRightClickMenu from '../../hooks/useRightClickMenu'
 import './index.scss'
 
 interface IProps {
-  
+
 }
 
 interface IState {
@@ -105,7 +105,7 @@ const SideNavBar: FC<IProps> = (): ReactElement => {
         </div>
         <div className="sidenavbar-bottom-switch"
           onClick={onShowSwitch}>
-          <FontAwesomeIcon className="icon" icon={faExclamation} />
+          <FontAwesomeIcon className="icon" icon={faExchange} />
           外观切换
         </div>
       </div>

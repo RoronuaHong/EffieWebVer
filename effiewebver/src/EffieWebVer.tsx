@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet'
 import Note from './components/Note'
 import NoteList from './components/NoteList'
 import SideNavbar from './components/SideNavBar'
+import { EffieContextProvider } from './context/EffieContext'
 
 import './EffieWebVer.scss'
 
@@ -16,36 +17,38 @@ import {
 const EffieWebVer = () => {
   return (
     <Router>
-      <div className="EffieWebVer">
-        <Helmet>
-          <title>EffieWebVer</title>
-          <meta name='description' content='EffieWebVer' />
-        </Helmet>
-        <SideNavbar />
-        <Routes>
-          <Route path="/all-notes" element={ <NoteList title="All Notes" /> } />
-          <Route path="/all-notes/:ids" element={ <Note /> } />
+      <EffieContextProvider>
+        <div className="EffieWebVer">
+          <Helmet>
+            <title>EffieWebVer</title>
+            <meta name='description' content='EffieWebVer' />
+          </Helmet>
+          <SideNavbar />
+          <Routes>
+            <Route path="/all-notes" element={ <NoteList title="All Notes" /> } />
+            <Route path="/all-notes/:ids" element={ <Note /> } />
 
-          <Route path="/intro" element={ <NoteList title="Intro" /> } />
-          <Route path="/intro/:ids" element={ 
-            <>
-              <NoteList title="Intro" />
-              <Note /> 
-            </>
-          } />
+            <Route path="/intro" element={ <NoteList title="Intro" /> } />
+            <Route path="/intro/:ids" element={ 
+              <>
+                <NoteList title="Intro" />
+                <Note /> 
+              </>
+            } />
 
-          <Route path="/trash" element={ <NoteList title="Trash" /> } />
-          <Route path="/trash/:ids" element={ 
-            <>
-              <NoteList title="Trash" />
-              <Note />
-            </>}  
-          />
+            <Route path="/trash" element={ <NoteList title="Trash" /> } />
+            <Route path="/trash/:ids" element={ 
+              <>
+                <NoteList title="Trash" />
+                <Note />
+              </>}  
+            />
 
-          <Route path="/docbox" element={ <NoteList title="Docbox" /> } />
-          <Route path="/docbox/:ids" element={ <Note /> } />
-        </Routes>
-      </div>
+            <Route path="/docbox" element={ <NoteList title="Docbox" /> } />
+            <Route path="/docbox/:ids" element={ <Note /> } />
+          </Routes>
+        </div>
+      </EffieContextProvider>
     </Router>
   )
 }

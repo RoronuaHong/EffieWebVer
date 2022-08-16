@@ -19,7 +19,7 @@ const Menu: FC<IProps> = ({
       top: y,
       left: x,
       color: '#222',
-      borderRadius: 3,
+      borderRadius: 1,
       position: 'absolute',
       flexDirection: 'column',
       backgroundColor: '#fff',
