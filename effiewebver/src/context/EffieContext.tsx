@@ -2,15 +2,21 @@ import { FC, createContext, useState, useReducer } from 'react'
 
 import Reducer, { StateData, EffieReducer } from '../reducers/EffieReducer'
 
-export const EffieContext = createContext(null)
-
-const initialState: StateData  = []
-
 interface IProps {
   children?: React.ReactNode
 }
 
+export interface EffieContext {
+  EffieInfo: Object
+  setEffieInfo: Function
+  EffieDispatch: any
+}
+
 // children?: React.ReactNode;
+
+const initialState: StateData  = []
+
+export const EffieContext = createContext(initialState)
 
 export const EffieContextProvider: FC<IProps> = ({ children }) => {
   const [EffieInfo, setEffieInfo] = useState({
@@ -20,15 +26,10 @@ export const EffieContextProvider: FC<IProps> = ({ children }) => {
   const [Effie, EffieDispatch] = useReducer<EffieReducer>(Reducer, initialState)
 
   return (
-    // <EffieContext.Provider value={{ 
-    //   EffieInfo, setEffieInfo,
-    //   mocksState: Effie, EffieDispatch }}>
-    //   {children}
-    // </EffieContext.Provider>
-    
-    <EffieContext.Provider value={{ 
+    <EffieContext.Provider value={{
       EffieInfo, setEffieInfo,
-      mocksState: Effie, EffieDispatch }}>
+      EffieState: Effie, EffieDispatch 
+    }}>
       {children}
     </EffieContext.Provider>
   )
