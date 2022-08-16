@@ -1,6 +1,6 @@
 import React, { FC, ReactElement, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus, faTrashCan, faSearch, faBook, faEnvelope, faExclamation, faDownload } from '@fortawesome/free-solid-svg-icons'
+import { faPlus, faTrashCan, faSearch, faBook, faEnvelope, faExclamation, faDownload, faBriefcase , faUpload } from '@fortawesome/free-solid-svg-icons'
 
 import { NavLink } from 'react-router-dom'
 
@@ -27,6 +27,14 @@ const SideNavBar: FC<IProps> = (): ReactElement => {
 
   const onHandleSearch = () => {
     console.log(`搜索`)
+  }
+
+  const onSaveSwitch = () => {
+    console.log(`保存json`)
+  }
+
+  const onLoadSwitch = () => {
+    console.log(`载入json`)
   }
 
   const onShowSwitch = () => {
@@ -77,7 +85,7 @@ const SideNavBar: FC<IProps> = (): ReactElement => {
           <ul>
             <li>
               <NavLink to="docbox">
-                <FontAwesomeIcon className="icon" icon={faDownload} />
+                <FontAwesomeIcon className="icon" icon={faBriefcase} />
                 文稿箱
               </NavLink>
             </li>
@@ -85,6 +93,16 @@ const SideNavBar: FC<IProps> = (): ReactElement => {
         </div>
       </div>
       <div className="sidenavbar-bottom">
+        <div className="sidenavbar-bottom-switch"
+          onClick={onSaveSwitch}>
+          <FontAwesomeIcon className="icon" icon={faDownload} />
+          保存
+        </div>
+        <div className="sidenavbar-bottom-switch"
+          onClick={onLoadSwitch}>
+          <FontAwesomeIcon className="icon" icon={faUpload} />
+          载入
+        </div>
         <div className="sidenavbar-bottom-switch"
           onClick={onShowSwitch}>
           <FontAwesomeIcon className="icon" icon={faExclamation} />

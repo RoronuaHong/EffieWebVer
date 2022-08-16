@@ -94,11 +94,11 @@
         margin-right: 8px;
       }
     }
-    &:hover {
+    :hover {
       background: #cfcfcf;
       cursor: pointer;
     }
-    &.active {
+    .active {
       background: #cfcfcf;
     }
   }
