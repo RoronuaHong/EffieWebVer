@@ -7,6 +7,11 @@
   font-size: 14px;
   background: #e7e7e7;
   color: #111;
+  -webkit-user-select: none;  
+  -moz-user-select: none;  
+  -o-user-select: none;  
+  -ms-user-select: none;
+  user-select: none;
   .sidenavbar-top {
     flex: 1;
     padding: 20px 0;
@@ -86,9 +91,16 @@
     border-radius: 5px;
     .sidenavbar-bottom-switch {
       display: flex;
-      padding: 12px 4px;
+      margin: 5px 0;
+      padding: 8px 4px;
       align-items: center;
       text-align: center;
+      border-radius: 5px;
+      -webkit-user-select: none;  
+      -moz-user-select:none;  
+      -o-user-select:none;  
+      -ms-user-select:none;
+      user-select:none;
       .icon {
         font-size: 14px;
         margin-right: 8px;
@@ -99,7 +111,7 @@
       cursor: pointer;
     }
     .active {
-      background: #cfcfcf;
+      background: #c3c3c3;
     }
   }
 }

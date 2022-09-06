@@ -1,43 +1,344 @@
 import { FC, createContext, useState, useReducer } from 'react'
+import { effieState, initialEffieState } from '../store'
 
-import Reducer, { StateData, EffieReducer } from '../reducers/EffieReducer'
+import EffieReducer from '../reducers/EffieReducer'
 
 interface IProps {
   children?: React.ReactNode
 }
 
-export interface EffieContext {
-  EffieInfo: Object
-  setEffieInfo: Function
-  EffieDispatch: React.Dispatch<{
-    type: string
-    payload: number
-  }>
-}
-
-// children?: React.ReactNode;
-
-const initialState: StateData  = []
-
-export const EffieContext = createContext(initialState)
+export const EffieContext = createContext<{
+  effieInfo: {
+    mode: string,
+    allNotes: {
+      id: string,
+      desc: string,
+      createdAt: Number,
+      updatedAt: Number
+    }[],
+    effieList: {
+      id: string,
+      desc: string,
+    }[]
+  },
+  setEffieInfo: (val: any) => void
+}>({
+  effieInfo: {
+    mode: 'light',
+    allNotes: [],
+    effieList: []
+  },
+  setEffieInfo: () => undefined
+})
 
 export const EffieContextProvider: FC<IProps> = ({ children }) => {
-  const [EffieInfo, setEffieInfo] = useState({
+  const [effieInfo, setEffieInfo] = useState({
+    mode: 'light',
+    allNotes: [],
+    effieList: [{
+      id: Date.now() + '' + Math.ceil(Math.random() * 1000),
+      desc: `
+        欢迎使用 Effie
 
+        Effie 是一个**把思想变成价值**的工具，希望帮助你做好三件事：
+
+        1. 记录笔记，积累知识；
+        2. 梳理思路，认真思考；
+        3. 输出文字，影响他人。
+
+        记录笔记，积累知识
+
+        好记性不如烂笔头。当你阅读一本好书，置身一次思维碰撞的谈话，聆听一场酣畅淋漓的演讲，把知识记录下来，才能变成自己的。
+
+        养成随时记录的习惯。不断地积累，未来终将收获。
+
+        Effie 可以帮助你
+
+          随时随地记录
+            不受设备限制。你可以在手机、平板、电脑等各种设备上使用。
+            不受地点限制。即便身处巍峨壮阔的雪山，人迹罕至的荒岛，没有网络也可使用。
+            不需等待太久。Effie 的打开速度很快，点击 Effie 的图标永远没有心理负担。
+          轻松管理内容
+            所有内容都保存在文稿库，不用管理本地文件。
+            所有内容云端自动同步，将所有的文稿带在身边。
+          提高笔记的可读性
+            你可以用**多种样式**来::标注::你的笔记。++以及给笔记添加评论++
+            你可以在任何地方插入图片和链接。
+
+        输入“/”可以方便的调整文字样式，或者插入评论、引用、注释或代码块。
+
+        梳理思路，认真思考
+
+        正确的方向比努力更重要。每周给自己几分钟，排除掉所有的干扰，把重要的问题想清楚。
+
+        从一个点开始层层发散，列下所有的头绪和灵感，这就是头脑风暴的要诀。大纲和导图让你在看清细节的同时，还能纵览局部和整体的关系，最终形成一张完整的拼图。
+
+        - Effie 可以帮助你
+          - 沉浸思考
+            - Effie 的界面没有闪亮的颜色，写作区干净的像一张白纸，甚至找不到一个按钮。Effie 的设计就是让你忽略她的存在。
+            - Effie 是一个和你独处的软件。帮助你排除一切干扰，专注在思考本身。
+          - 完善逻辑
+            - Effie 以更清晰的方式展示大纲的层级，让你更直观地理清脉络，让逻辑无懈可击。
+            - 你可以把大纲一键转换成思维导图，捕捉创意，鸟瞰全局。
+          - 自由翱翔
+            - Effie 支持大纲和文本的混排，不用在创建文档的时候，就面临在大纲和文本中二选一。随时插入大纲整理思路，随时插入文字补充说明。
+            - 没有版式的限制。很多软件，在输入内容之前，必须给文档取一个标题。他们不懂思考的自由。
+
+        %% 点击大纲右上方的“⑆”按钮，把大纲一键转换成思维导图。
+
+        ## 输出文字，影响他人
+
+        思路理清之后，就可以尝试创作一个作品了。坚持输出文字的练习。小到一段随想，一个报告，一篇工作文档；大到一个计划书，一篇论文，一本小说。写作是高效的学习，自己懂了不是真懂，能给别人讲才是融会贯通。
+
+        确保自己的作品能够被看到。让你的思想影响到他人，才能真正创造价值。
+
+        - Effie 可以帮助你
+          - 输出效率 MAX
+            - 双手在键盘上打字如飞的时候，伸手够一下鼠标都是打断。Effie 的电脑和 iPad 版本专为键盘优化，最大化你的输出效率。
+            - Effie 可以完全胜任严肃写作的场景，一篇文稿输入几十万字仍然丝滑。
+          - 方便传播
+            - Effie 可以导出漂亮的长图，特别适合用手机分享。
+            - 使用思维导图做现场演示。Effie 支持经典、树形、鱼骨等多种导图样式。
+            - 导出成各种文件格式，或将文章发表在公开的网站。
+
+        %% 右键点击文稿卡片，导出成图片。通过社交网络分享你的想法。
+
+        ## Effie 创始人的一封信
+
+        您好：
+
+        很高兴认识，我是李自然，Effie 的产品经理和 CEO。
+
+        我是一个商业的参与者，创立和投资了一些小有名气的项目；我还是一个自媒体人，做了视频频道《李自然说》，在全网有一百多万粉丝；我还将成为一个作者，我的第一本商业书籍正在写作中。
+
+        管理公司，要把想法落实成文档发给同事；做自媒体，要整理思路写提纲；写书，当然就要更加严肃地面对写作。这些工作，都要先把头脑中的思想变成文字，最终才能变成价值。
+
+        作为一个产品经理出身的创业者，Effie 最初是我做给自己用的::“独立思考”和“输出文字”::的工具。
+
+        Effie 的设计遵循几个朴素的理念：
+
+        1. 无需学习
+
+        很多软件都难以上手。输入设备和操作系统一直在发展，软件的交互方式一直在变化。用户辛辛苦苦适应了一个软件，过几年又要再重新学习。
+
+        Effie 希望你把精力花在创作，而不是折腾软件。
+
+        Effie 的核心使用方法就是打字而已。会用备忘录就会用 Effie。
+
+        2. 开放
+
+        很多软件不能方便的导出用户数据。久而久之，用户就会被绑架，很难再迁移到其他软件。
+
+        Effie 支持把文稿导出成各种通用格式。我们不搞这种小心思。
+
+        3. 长期主义
+
+        Effie 是一款简单纯粹的写作软件，用户喜欢就付费使用。我们承诺永远不添加广告，也不考虑其他花哨的盈利模式。
+
+        我们坚持独立开发，不融资，也不接受大公司的收购。我们愿意花费长久的时间打磨产品，把 Effie 做成一个超过 100 年的品牌。
+
+        最后介绍一下 Effie 的团队。
+
+        我的搭档申旻，Effie 的 CTO，是前金山毒霸客户端主程，C\++ FAQ 官方中文版翻译者，《Delphi高手突破》作者，有超过 20 年的开发经验，以编程为爱好，并对技术有着极高的追求。
+
+        由我、申旻以及多位程序员、设计师和运营人员共同组成的 Effie 团队，成熟稳定，一起共事超过 8 年。
+
+        希望这封邮件能增进您对 Effie 的了解和信任。愿 Effie 成为您手中的创作利器。
+
+        > 有意清秋入衡霍，为君无尽写江天。
+
+        李自然
+        2022 年夏
+      `
+    }, {
+      id: Date.now() + '' + Math.ceil(Math.random() * 1000),
+      desc: `
+          # Effie 上手指南
+
+          ## 开始创作
+          
+          Effie 采用标记语言，让创作者双手无需离开键盘就能调整文稿样式。输入 / 可以打开 Effie 内建的快捷标记面板，无需学习即可上手使用。
+          
+          ### **试试看**
+          - 点击左上角的 << 按钮，收起左边栏，进入无干扰的写作环境++快捷键 Ctrl 1++
+          - 试试在行尾输入几个::标注文字::
+            - 方法：输入 / 后选择::标注::，输入完成后敲回车
+          
+          ## 使用大纲和思维导图
+          
+          列表大纲可以让创作者更清晰地整理思路和逻辑。在行首输入 - 然后空格，即可进入大纲模式。
+          
+          ### **试试看**
+          - 试试点击本行左侧圆点，收起和展开子项大纲
+            - 项目1
+            - 项目2
+          - 试试在本行末尾敲回车输入文字或插入图片，然后按 Tab 或 Shift+Tab 向后或向前缩进
+          - 试试点击列表右上方的 ⑆ 按钮，把文字或图片变成思维导图
+            - 试试在思维导图模式编辑和操作
+          - 试试连续敲两次回车键退出大纲模式
+          
+          试试在行首输入 - 空格，创建一个新的大纲。
+          
+          ## 把文稿导出成常见格式
+          
+          在左侧文稿预览卡片上点击右键，选择::导出::，即可把文稿导出成常见的文件格式。
+          
+          如果希望一次导出多篇文稿，可以按住 Ctrl 键多选再导出。
+          
+          %% Effie 导出的图片非常适合在手机上阅读。
+          
+          ## 把文稿发布到网站
+          
+          在左侧文稿预览卡片上点击右键，选择::发布::，把文稿发布到网站以供其他人访问。发布时可以选择公开或私密两种方式。
+          
+          ## 在其他设备上使用 Effie
+          
+          您正在使用 Effie Windows 版。
+          
+          Effie 是跨平台的写作软件。您还可以在Mac、iOS上使用 Effie，进一步提升创作效率。请移步官网下载：https://effie.co
+          
+          Effie 即将支持 Android 操作系统，敬请期待！
+        `
+      }, {
+        id: Date.now() + '' + Math.ceil(Math.random() * 1000),
+        desc: `
+        # 调整文稿样式
+
+        Effie 使用标记语言调整文稿样式。
+        输入 / ，使用::快捷标记面板::输入标记，也可以根据以下操作指引手动输入标记。
+        
+        ## 输入标题
+        
+        在行首输入 # 然后空格，就可以输入标题了。
+        在行首输入 ## 空格是二级标题，以此类推，最多六级。
+        
+        ## 给文字添加样式
+        
+        在文字前后加一个星号是*斜体*，加两个星号是**粗体**，加两个冒号是::标注::，加两个波浪线是~~删除~~，加两个加号是++评论++。
+        
+        > 在行首输入 > 然后空格，添加引用。
+        
+        %% 在行首输入 %% 然后空格，添加注释。
+        
+        输入三个减号并回车，即可插入分隔线。
+        ---
+        
+        ## 插入代码
+        
+        在文字前后加一个重音符号（数字1左边的按键）表示代码，如：'hello_world.h'
+
+        在行首输入两个重音符号并空格表示代码块，如：
+        
+        #include <stdio.h>
+        int main() {
+          printf("Hello Creator!");
+          return 0;
+        }
+        
+        ## 转义字符
+        
+        输入 \* \_ 等符号时，如不想触发样式，请在前面加 \ 符号。
+      `
+    }, {
+      id: Date.now() + '' + Math.ceil(Math.random() * 1000),
+      desc: `
+        # Effie 快捷键列表
+
+        ## 基本操作
+        
+        - ::Ctrl+Alt+，:: 打开设置
+        - ::Ctrl+1:: 展开/收缩左边栏
+        - ::Shift+Ctrl+N:: 新建文件夹
+        - ::Ctrl+N:: 新建文稿
+        - ::Ctrl+Up:: 打开上一篇文稿
+        - ::Ctrl+Down:: 打开下一篇文稿
+        - ::Ctrl+Delete:: 删除选中文稿
+        - ::Shift+Ctrl+S:: 把文稿导出成 EffieSheet 文件
+        - ::Ctrl+6:: 字数统计
+        - ::Shift+Ctrl+F:: 在文稿列表里查找
+        - ::F11:: 进入/退出全屏
+        
+        ## 大纲
+        
+        - ::Tab:: 降低层级
+        - ::Shift+Tab:: 提升层级
+        - ::Ctrl+\`:: 打开思维导图
+        - ::Ctrl+/:: 折叠/展开大纲
+        
+        ## 思维导图
+        
+        - ::Ctrl+\+:: 放大思维导图
+        - ::Ctrl+-:: 缩小思维导图
+        - ::Ctrl+0:: 还原思维导图默认大小
+        - ::Enter:: 插入主题
+        - ::Tab:: 插入子主题
+        - ::Ctrl+S:: 保存成图片
+        - ::Ctrl+/:: 折叠/展开子主题
+        - ::Ctrl+Z:: 撤销
+        - ::Shift+Ctrl+Z:: 重做
+        - ::Del:: 删除
+        
+        ## 编辑区快捷键
+        
+        - ::Ctrl+Z:: 撤销
+        - ::Shift+Ctrl+Z:: 重做
+        - ::Ctrl+A:: 全选
+        - ::Ctrl+X:: 剪切
+        - ::Ctrl+C:: 复制
+        - ::Ctrl+V:: 粘贴
+        - ::Ctrl+B:: 加粗
+        - ::Ctrl+I:: 斜体
+        - ::Ctrl+L:: 清除标记
+        - ::Ctrl+M:: 插入图片
+        - ::Ctrl+K:: 插入链接
+        - ::Ctrl+F:: 查找
+        - ::F3:: 查找下一个
+        - ::Ctrl+H:: 查找并替换
+        - ::→:: 光标向右移动一个字符
+        - ::←:: 光标向左移动一个字符
+        -  ::↑:: 光标向上移动一行
+        -  ::↓:: 光标向下移动一行
+        - ::Home:: 光标移动到当前行行首
+        - ::End:: 光标移动到当前行行尾
+        - ::Ctrl+Home:: 光标移动到文章开头
+        - ::Ctrl+End:: 光标移动到文章末尾
+      `
+    }, {
+      id: Date.now() + '' + Math.ceil(Math.random() * 1000),
+      desc: `
+        # 隐私与反馈
+
+        ## 隐私保护
+        
+        我们深知隐私对创作者的重要性。
+        
+        Effie 是一款单纯的写作软件。您所有上传的数据都经过加密保存，我们不通过数据盈利，不分析创作者的内容，不包含智能推荐的算法，也没有接入任何的广告系统，您完全可以放心使用。
+        
+        使用 Effie 创作，就是对我们的信任，每一份信任都值得我们珍重。
+        
+        ## 反馈和支持
+        
+        如需帮助或提供反馈意见，可随时通过右键打开链接：https://www.effie.co/feedback/ 以添加我们的微信，我们会及时通过并认真回复。
+        
+        如果您喜欢 Effie，请在 Microsoft Store 中给我们留下好评。 您的举手之劳，是对我们最大的支持，感谢！
+      `
+    }]
   })
 
-  const [Effie, EffieDispatch] = useReducer<EffieReducer>(Reducer, initialState)
+  // FIXME: 修复 Effie 与 EffieDispatch
+  const [Effie, EffieDispatch] = useReducer(EffieReducer, initialEffieState)
 
   return (
     <EffieContext.Provider value={{
-      EffieInfo, setEffieInfo,
-      EffieState: Effie, EffieDispatch 
+      effieInfo,
+      setEffieInfo,
+      // EffieState: Effie,
+      // EffieDispatch
     }}>
       {children}
     </EffieContext.Provider>
   )
 }
-
 
 
 

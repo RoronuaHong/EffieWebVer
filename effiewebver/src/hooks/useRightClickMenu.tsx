@@ -14,6 +14,7 @@ const useRightClickMenu = () => {
     if($(e.target as Element).attr('class') === 'sidenavbar-top' || $(e.target as Element).attr('class') === 'note-list-body') {
       setX(e.pageX)
       setY(e.pageY)
+
       setShowMenu(true)
     }
   }

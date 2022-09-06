@@ -1,4 +1,5 @@
 import React, { FC, ReactElement } from 'react'
+import MenuItem from '../MenuItem'
 
 import './index.scss'
 interface IProps {
@@ -15,7 +16,6 @@ const Menu: FC<IProps> = ({
   const style = () => {
     return {
       with: 120,
-      height: 120,
       top: y,
       left: x,
       color: '#222',
@@ -27,9 +27,33 @@ const Menu: FC<IProps> = ({
     }
   }
 
+  // TODO: 里面无法点击。
+  const handleCreateNewFolder = () => {
+    console.log(1)
+  }
+
+  const handleCreateNewDraft = () => {
+    console.log(2)
+  }
+
   return (
-    <div className="menu" style={style() as React.CSSProperties}>
-      
+    <div className="menu"
+      style={style() as React.CSSProperties}>
+      <MenuItem onClick={handleCreateNewFolder}>
+        新建文件夹...
+      </MenuItem>
+      <MenuItem onClick={handleCreateNewDraft}>
+        新建文稿
+      </MenuItem>
+      <MenuItem>
+        33333
+      </MenuItem>
+      <MenuItem>
+        44444
+      </MenuItem>
+      <MenuItem>
+        55555
+      </MenuItem>
     </div>
   )
 }

@@ -1,28 +1,42 @@
-import React, { FC, ReactElement, useState } from 'react'
+import React, { FC, ReactElement, useState, useContext } from 'react'
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faTrashCan, faSearch, faBook, faEnvelope, faExchange, faDownload, faBriefcase , faUpload } from '@fortawesome/free-solid-svg-icons'
 
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 
 import Menu from '../Menu'
 import useRightClickMenu from '../../hooks/useRightClickMenu'
+import { EffieContext } from '../../context/EffieContext'
 
 import './index.scss'
 
-interface IProps {
-
-}
-
-interface IState {
-  visible: boolean
+export interface IProps {
+  
 }
 
 const SideNavBar: FC<IProps> = (): ReactElement => {
+  const location = useLocation()
+
   const [visible, setVisible] = useState(false)
   const { x, y, showMenu } = useRightClickMenu()
-  
+  const { effieInfo, setEffieInfo } = useContext(EffieContext)
+
   const handleCreateNote = () => {
-    console.log(`新建文稿`)
+    if(location.pathname.indexOf(`all-notes`) > -1) {
+      setEffieInfo({
+        ...effieInfo,
+        allNotes: [
+          ...effieInfo.allNotes,
+          {
+            id: Date.now() + '' + Math.ceil(Math.random() * 1000),
+            desc: ``,
+            createdAt: Date.now(),
+            updatedAt: Date.now()
+          }
+        ]
+      })
+    }
   }
 
   const onHandleSearch = () => {
@@ -38,7 +52,12 @@ const SideNavBar: FC<IProps> = (): ReactElement => {
   }
 
   const onShowSwitch = () => {
-    console.log(`切换外观`)
+    const data = effieInfo
+
+    data.mode = data.mode === `light` ? `dark` : `light`
+
+    // TODO: 完成mode修改
+    setEffieInfo({ ...data })
   }
 
   return (

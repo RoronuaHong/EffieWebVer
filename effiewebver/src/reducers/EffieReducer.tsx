@@ -1,18 +1,17 @@
-// action-type的类型
-const JSON_DOWNLOADED = 'JSON_DOWNLOADED'
+import { effieState } from '../store'
 
-// state的类型, action的类型
-export type StateData = {
-
+export type effieAction = {
+  type: ''
 }
 
-export type EffieAction = { 
-  type?: typeof JSON_DOWNLOADED 
+export type Dispatcher = (action: effieAction) => any
+export interface effieContext {
+  state: effieState
+  dispatch: Dispatcher
 }
 
-export type EffieReducer = React.Reducer<StateData, EffieAction>
-
-const Reducer: EffieReducer = (state, action) => {
+const EffieReducer = (state: effieState, action: effieAction) => {
+  // FIXME: 将state变成可以以数组形式完成。
   // let effieState = [...state]
 
   switch(action.type) {      
@@ -21,5 +20,7 @@ const Reducer: EffieReducer = (state, action) => {
   }
 }
 
-export default Reducer
+export default EffieReducer
+
+
 
