@@ -1,4 +1,4 @@
-import React, { FC, useContext, ReactElement } from 'react'
+import { FC, useContext, ReactElement } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
@@ -38,20 +38,23 @@ const NoteList: FC<IProps> = (): ReactElement => {
     curList = effieInfo.effieList
   }
 
+  const pathname = (location.pathname).split('/')[1]
+
   return (
-    <div className="note-list">
-      <div className="note-list-body">
+    <div className='note-list'>
+      <div className='note-list-body'>
         {curList.length <= 0 ?
-          <div className="empty-card" onClick={onCreateNoteCard}>
-            <FontAwesomeIcon className="icon" icon={faPlus} />
+          <div className='empty-card' onClick={onCreateNoteCard}>
+            <FontAwesomeIcon className='icon' icon={faPlus} />
           </div>
           :
           (curList.map((item: any) =>
-            <NavLink key={item.id}
+            <NavLink
+              key={item && item.id}
               className={`note-card`}
-              to={{ pathname: `${location.pathname}/${item.id}` }}>
+              to={`/${pathname}/${item && item.id}`}>
                 <div className='desc-content'>
-                  {item.desc || <div className={`note-empty-text`}>空白文档</div>}
+                  {item && (item.desc || <div className={`note-empty-text`}>空白文档</div>)}
                 </div>
             </NavLink>
           ))

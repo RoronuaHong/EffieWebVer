@@ -186,16 +186,25 @@ q:before, q:after, blockquote:before, blockquote:after {
     .note-card {
       background: #4d4d4d;
       color: #fff;
+      &:hover {
+        background: #6a6a6a;
+        cursor: pointer;
+      }
+      &.active {
+        background: #6a6a6a;
+      }
     }
   }
   .note {
-    background: #232323;
+    // background: #232323;
+    background: #101010;
   }
   .note-body {
     background: #232323;
     textarea {
       background: #232323;
       caret-color: #f91;
+      color: #afada7;
     }
   }
   .note-empty-content {
@@ -212,6 +221,32 @@ q:before, q:after, blockquote:before, blockquote:after {
       }
     }
   }
+
+  // 菜单栏
+  .menu {
+    color: #fff !important;
+    background: #303030 !important;
+    box-shadow: 3px 3px 2px #393939;
+  }
+
+  // 标题栏
+  .nav-wrap {
+    background: #333333;
+    color: #fff;
+    .hide-bar {
+      &:hover {
+        background: #333;
+        color: #cccccc;
+      }
+    }
+    .nav-list {
+      .nav-li {
+        color: #fff;
+      }
+    }
+  }
 }
+
+
 
 

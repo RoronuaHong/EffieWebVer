@@ -1,0 +1,41 @@
+.nav-wrap {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 30px;
+  padding: 0 20px;
+  line-height: 30px;
+  background: #fff;
+  box-sizing: border-box;
+  .hide-bar {
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+    &:hover {
+      background: #cccccc;
+      color: #000000;
+    }
+  }
+  .nav-list {
+    display: flex;
+    align-items: flex-start;
+    justify-items: center;
+    .nav-li {
+      padding: 0 10px;
+      font-size: 14px;
+      color: #000000;
+      cursor: pointer;
+      &:hover {
+        background: #374ed4;
+        color: #fff;
+      }
+    }
+  }
+}
+
+
