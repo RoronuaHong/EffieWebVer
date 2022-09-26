@@ -32,7 +32,7 @@ const NavList: FC<IProps> = (): ReactElement => {
   return (
     <div className='nav-wrap'>
       <div className='hide-bar'>
-        {`<<`}
+        {`＜`}
       </div>
       <div className='nav-list'>
         {list.map(item => (

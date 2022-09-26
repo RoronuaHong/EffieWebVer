@@ -47,7 +47,7 @@ const EffieWebVer = () => {
           <title>EffieWebVer</title>
           <meta name='description' content='EffieWebVer' />
         </Helmet>
-        <NavList />
+        {/* <NavList /> */}
         <SideNavbar />
         <Routes>
           <Route path='/' element={

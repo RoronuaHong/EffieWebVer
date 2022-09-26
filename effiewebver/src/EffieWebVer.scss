@@ -103,6 +103,25 @@ q:before, q:after, blockquote:before, blockquote:after {
 }
 
 
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+::-webkit-scrollbar {
+  width: 5px;
+  height: 10px;
+  cursor: default;
+}
+
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+/*定义滚动条轨道 内阴影+圆角*/
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+
 // 夜间模式
 .EffieWebVer-dark {
   .sidenavbar {
@@ -244,6 +263,12 @@ q:before, q:after, blockquote:before, blockquote:after {
         color: #fff;
       }
     }
+  }
+
+  /*定义滑块 内阴影+圆角*/
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 10px;
   }
 }
 
