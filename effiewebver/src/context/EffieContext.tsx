@@ -12,12 +12,14 @@ export const EffieContext = createContext<{
     mode: string,
     allNotes: {
       id: string,
+      cate: string,
       desc: string,
       createdAt: Number,
       updatedAt: Number
     }[],
     effieList: {
       id: string,
+      cate: string,
       desc: string,
     }[]
   },
@@ -37,6 +39,7 @@ export const EffieContextProvider: FC<IProps> = ({ children }) => {
     allNotes: [],
     effieList: [{
       id: Date.now() + '' + Math.ceil(Math.random() * 1000),
+      cate: `intro`,
       desc: `
         欢迎使用 Effie
 
@@ -152,6 +155,7 @@ export const EffieContextProvider: FC<IProps> = ({ children }) => {
       `
     }, {
       id: Date.now() + '' + Math.ceil(Math.random() * 1000),
+      cate: `intro`,
       desc: `
           # Effie 上手指南
 
@@ -201,6 +205,7 @@ export const EffieContextProvider: FC<IProps> = ({ children }) => {
         `
       }, {
         id: Date.now() + '' + Math.ceil(Math.random() * 1000),
+        cate: `intro`,
         desc: `
         # 调整文稿样式
 
@@ -241,6 +246,7 @@ export const EffieContextProvider: FC<IProps> = ({ children }) => {
       `
     }, {
       id: Date.now() + '' + Math.ceil(Math.random() * 1000),
+      cate: `intro`,
       desc: `
         # Effie 快捷键列表
 
@@ -305,6 +311,7 @@ export const EffieContextProvider: FC<IProps> = ({ children }) => {
       `
     }, {
       id: Date.now() + '' + Math.ceil(Math.random() * 1000),
+      cate: `intro`,
       desc: `
         # 隐私与反馈
 

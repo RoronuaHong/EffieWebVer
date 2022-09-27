@@ -36,7 +36,9 @@ const NavList: FC<IProps> = (): ReactElement => {
       </div>
       <div className='nav-list'>
         {list.map(item => (
-          <div className='nav-li'>{item.name}</div>
+          <div className='nav-li' key={item.id}>
+            {item.name}
+          </div>
         ))}
       </div>
     </div>

@@ -4,6 +4,7 @@ export interface effieState {
     allNotes: {
       id: string,
       desc: string,
+      cate: string,
       createdAt: Number,
       updatedAt: Number
     }[],
@@ -20,6 +21,7 @@ export const initialEffieState: effieState = {
     mode: 'light',
     allNotes: [{
       id: ``,
+      cate: 'all-note',
       desc: ``,
       createdAt: 0,
       updatedAt: 0

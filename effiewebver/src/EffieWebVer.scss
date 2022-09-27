@@ -5,9 +5,11 @@
 
 .EffieWebVer {
   display: flex;
+  height: 100vh;
+  padding-top: 30px;
   align-items: center;
   justify-items: center;
-  height: 100vh;
+  box-sizing: border-box;
 }
 
 .empty-state {
@@ -36,11 +38,11 @@ h1, h2, h3, h4, h4, h5 {
 }
 
 body {
-  background-color: #FFFFFF;
-  color: #666666;
   font-family: Helvetica,Arial,sans-serif;
+  background-color: #FFFFFF;
   font-size: 12px;
   text-align: left;
+  color: #666666;
 }
 
 select {
@@ -210,7 +212,8 @@ q:before, q:after, blockquote:before, blockquote:after {
         cursor: pointer;
       }
       &.active {
-        background: #6a6a6a;
+        // background: #6a6a6a;
+        background: #5269e9;
       }
     }
   }

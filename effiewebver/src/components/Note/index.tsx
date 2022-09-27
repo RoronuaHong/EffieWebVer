@@ -58,9 +58,6 @@ const Note = () => {
     list = effieInfo.effieList
   }
 
-
-  // console.log(effieInfo.effieList)
-
   return (
     <div className="note">  
       {list.length === 0 && <div className="note-content">

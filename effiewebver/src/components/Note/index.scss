@@ -49,15 +49,16 @@
   background: #fff;
   textarea {
     width: 100%;
-    height: 99.811vh;
+    height: 96.811vh;
     min-width: 500px;
-    padding: 100px 300px;
-    font-size: 26px;
+    padding: 50px 300px;
+    line-height: 24px;
     border: none;
     outline: none;
     resize: none;
     background: #fff;
     box-sizing: border-box;
+    font-size: 20px;
     // overflow: hidden;
   }
 }

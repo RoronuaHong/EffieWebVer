@@ -31,7 +31,8 @@
       cursor: pointer;
     }
     &.active {
-      background: #cfcfcf;
+      // background: #cfcfcf;
+      background: #5269e9;
     }
   }
   .note-card {
@@ -61,7 +62,9 @@
       cursor: pointer;
     }
     &.active {
-      background: #cfcfcf;
+      // background: #cfcfcf;
+      background: #5269e9;
+      color: #fff;
     }
     .note-empty-text {
       display: flex;
