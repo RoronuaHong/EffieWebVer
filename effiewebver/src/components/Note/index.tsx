@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { EffieContext } from '../../context/EffieContext'
+import { EffieContext } from 'context/EffieContext'
 import { useLocation } from 'react-router-dom'
 
 import './index.scss'

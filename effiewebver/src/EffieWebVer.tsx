@@ -1,14 +1,14 @@
-import { useContext } from 'react'
+import { useEffect, useContext } from 'react'
 
 import { Helmet } from 'react-helmet'
-import Note from './components/Note'
-import NavList from './components/NavList'
-import NoteList from './components/NoteList'
-import SideNavbar from './components/SideNavBar'
+import Note from 'components/Note'
+import NavList from 'components/NavList'
+import NoteList from 'components/NoteList'
+import SideNavbar from 'components/SideNavBar'
 
-import { EffieContext } from './context/EffieContext'
+import { EffieContext } from 'context/EffieContext'
 
-import './EffieWebVer.scss'
+import 'EffieWebVer.scss'
 
 import {
   BrowserRouter as Router,
@@ -39,6 +39,16 @@ import {
 
 const EffieWebVer = () => {
   const { effieInfo, setEffieInfo } = useContext(EffieContext)
+
+
+  useEffect(() => {
+    console.log(document.URL)
+
+    window.onbeforeunload = () => "If you leave this page, you'll also leave the call"
+    // window.addEventListener('popstate', () => window.history.pushState(null, '', document.URL))
+    window.addEventListener('popstate', () => window.history.pushState(null, '', '/'))
+  }, [])
+
 
   return (
     <Router>

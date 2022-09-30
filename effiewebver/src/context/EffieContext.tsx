@@ -1,7 +1,7 @@
 import { FC, createContext, useState, useReducer } from 'react'
-import { effieState, initialEffieState } from '../store'
+import { effieState, initialEffieState } from 'store'
 
-import EffieReducer from '../reducers/EffieReducer'
+import EffieReducer from 'reducers/EffieReducer'
 
 interface IProps {
   children?: React.ReactNode

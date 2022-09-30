@@ -1,13 +1,19 @@
 import { FC, ReactElement, useState, useContext } from 'react'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus, faTrashCan, faSearch, faBook, faEnvelope, faExchange, faDownload, faBriefcase , faUpload } from '@fortawesome/free-solid-svg-icons'
+import { 
+  faPlus, faTrashCan, faSearch, 
+  faBook, faEnvelope, faExchange, 
+  faDownload, faBriefcase , faUpload 
+} from '@fortawesome/free-solid-svg-icons'
 
 import { NavLink, useLocation } from 'react-router-dom'
 
-import Menu from '../Menu'
-import useRightClickMenu from '../../hooks/useRightClickMenu'
-import { EffieContext } from '../../context/EffieContext'
+import Menu from 'components/Menu'
+import useRightClickMenu from 'hooks/useRightClickMenu'
+import { EffieContext } from 'context/EffieContext'
+
+import { loadJsonOrTxt, downloadJsonOrTxt } from 'utils/txtFn'
 
 import './index.scss'
 
@@ -44,11 +50,18 @@ const SideNavBar: FC<IProps> = (): ReactElement => {
   }
 
   const onSaveSwitch = () => {
-    console.log(`保存json`)
+    downloadJsonOrTxt('EffieWebData.json', JSON.stringify({ ...effieInfo }))
+ 
+    console.log(`保存Data中...`)
   }
 
-  const onLoadSwitch = () => {
-    console.log(`载入json`)
+  const onLoadSwitch = async () => {
+    const info = (await loadJsonOrTxt())
+    const infoJson = JSON.parse(info)
+
+    setEffieInfo(infoJson)
+
+    console.log(`载入Data中...`)
   }
 
   const onShowSwitch = () => {
@@ -117,8 +130,9 @@ const SideNavBar: FC<IProps> = (): ReactElement => {
           <FontAwesomeIcon className='icon' icon={faDownload} />
           保存
         </div>
-        <div className='sidenavbar-bottom-switch'
-          onClick={onLoadSwitch}>
+        <div className='sidenavbar-bottom-switch'>
+          {/* onClick={onLoadSwitch}>  */}
+          <input className='sidenavbar-switch-input' type='file' id='file' onChange={onLoadSwitch}/>
           <FontAwesomeIcon className='icon' icon={faUpload} />
           载入
         </div>

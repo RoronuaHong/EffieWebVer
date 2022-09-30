@@ -1,5 +1,5 @@
 import React, { FC, ReactElement } from 'react'
-import MenuItem from '../MenuItem'
+import MenuItem from 'components/MenuItem'
 
 import './index.scss'
 interface IProps {

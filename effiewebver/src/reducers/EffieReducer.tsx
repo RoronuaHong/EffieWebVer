@@ -1,4 +1,4 @@
-import { effieState } from '../store'
+import { effieState } from 'store'
 
 export type effieAction = {
   type: ''

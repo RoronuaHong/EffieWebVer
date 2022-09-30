@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
 import { NavLink, useLocation } from 'react-router-dom'
-import { EffieContext } from '../../context/EffieContext'
+import { EffieContext } from 'context/EffieContext'
 
 import './index.scss'
 interface IProps {
@@ -18,7 +18,9 @@ const NoteList: FC<IProps> = (): ReactElement => {
   const location = useLocation()
   const { effieInfo, setEffieInfo } = useContext(EffieContext)
 
-  const onCreateNoteCard = () => {
+  const handleCreateNoteCard = () => {
+    // FIXME: 新建文稿箱部分。
+
     setEffieInfo({
       ...effieInfo,
       allNotes: [
@@ -47,7 +49,7 @@ const NoteList: FC<IProps> = (): ReactElement => {
     <div className='note-list'>
       <div className='note-list-body'>
         {curList.length <= 0 ?
-          <div className='empty-card' onClick={onCreateNoteCard}>
+          <div className='empty-card' onClick={handleCreateNoteCard}>
             <FontAwesomeIcon className='icon' icon={faPlus} />
           </div>
           :
