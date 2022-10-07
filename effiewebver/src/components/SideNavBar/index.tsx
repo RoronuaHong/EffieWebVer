@@ -9,13 +9,100 @@ import {
 
 import { NavLink, useLocation } from 'react-router-dom'
 
-import Menu from 'components/Menu'
 import useRightClickMenu from 'hooks/useRightClickMenu'
 import { EffieContext } from 'context/EffieContext'
 
 import { loadJsonOrTxt, downloadJsonOrTxt } from 'utils/txtFn'
 
+import Menu from 'components/Menu'
+// import VirtualTree from 'components/Tree'
+import VirtualTree from 'components/VirtualTree'
+
 import './index.scss'
+
+const treeData = [
+  {
+    key: "0",
+    label: "Documents",
+    icon: "fa fa-folder",
+    title: "Documents Folder",
+    children: [
+      {
+        key: "0-0",
+        label: "Document 1-1",
+        icon: "fa fa-folder",
+        title: "Documents Folder",
+      },
+    //   {
+    //     key: "0-0",
+    //     label: "Document 1-1",
+    //     icon: "fa fa-folder",
+    //     title: "Documents Folder",
+    //     children: [
+    //       {
+    //         key: "0-1-1",
+    //         label: "Document-0-1.doc",
+    //         icon: "fa fa-file",
+    //         title: "Documents Folder",
+    //         children: [
+    //           {
+    //             key: "1-0",
+    //             label: "Document 1-0",
+    //             icon: "fa fa-folder",
+    //             title: "Documents Folder-0"
+    //           }
+    //         ]
+    //       },
+    //       {
+    //         key: "0-1-2",
+    //         label: "Document-0-2.doc",
+    //         icon: "fa fa-file",
+    //         title: "Documents Folder",
+    //       },
+    //       {
+    //         key: "0-1-3",
+    //         label: "Document-0-3.doc",
+    //         icon: "fa fa-file",
+    //         title: "Documents Folder",
+    //       },
+    //       {
+    //         key: "0-1-4",
+    //         label: "Document-0-4.doc",
+    //         icon: "fa fa-file",
+    //         title: "Documents Folder",
+    //       },
+    //     ],
+    //   },
+    ],
+  },
+  {
+    key: "1",
+    label: "Desktop",
+    icon: "fa fa-desktop",
+    title: "Desktop Folder",
+    children: [
+    //   {
+    //     key: "1-0",
+    //     label: "document1.doc",
+    //     icon: "fa fa-file",
+    //     title: "Documents Folder",
+    //   },
+    //   {
+    //     key: "0-0",
+    //     label: "documennt-2.doc",
+    //     icon: "fa fa-file",
+    //     title: "Documents Folder",
+    //   },
+    ]
+  },
+  {
+    key: "2",
+    label: "Downloads",
+    icon: "fa fa-download",
+    title: "Downloads Folder",
+    children: [],
+  },
+]
 
 export interface IProps {
   
@@ -29,6 +116,8 @@ const SideNavBar: FC<IProps> = (): ReactElement => {
   const { effieInfo, setEffieInfo } = useContext(EffieContext)
 
   const handleCreateNote = () => {
+
+    // TODO: 新建文稿箱部分。
     if(location.pathname.indexOf(`all-notes`) > -1) {
       setEffieInfo({
         ...effieInfo,
@@ -71,6 +160,15 @@ const SideNavBar: FC<IProps> = (): ReactElement => {
 
     // TODO: 完成mode修改
     setEffieInfo({ ...data })
+  }
+
+  const handleChildVisible = (node, setChildVisible) => {
+    // console.log(node)
+
+    if(!node.children || node.children.length === 0) {
+      console.log(`异步加载data...`)
+      
+    }
   }
 
   return (
@@ -122,6 +220,11 @@ const SideNavBar: FC<IProps> = (): ReactElement => {
               </NavLink>
             </li>
           </ul>
+          {/* TODO: 完成VirtualTree的 */}
+          {/* <VirtualTree data={treeData} /> */}
+          <VirtualTree data={treeData}
+            // onChildVisible={handleChildVisible}
+          />
         </div>
       </div>
       <div className='sidenavbar-bottom'>
@@ -148,5 +251,6 @@ const SideNavBar: FC<IProps> = (): ReactElement => {
     </div>
   )
 }
+
 
 export default SideNavBar

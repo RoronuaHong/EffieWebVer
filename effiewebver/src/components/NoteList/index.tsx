@@ -19,20 +19,21 @@ const NoteList: FC<IProps> = (): ReactElement => {
   const { effieInfo, setEffieInfo } = useContext(EffieContext)
 
   const handleCreateNoteCard = () => {
-    // FIXME: 新建文稿箱部分。
+    // TODO: 新建文稿箱部分。
 
-    setEffieInfo({
-      ...effieInfo,
-      allNotes: [
-        ...effieInfo.allNotes,
-        {
-          id: Date.now() + '' + Math.ceil(Math.random() * 1000),
-          desc: ``,
-          createdAt: Date.now(),
-          updatedAt: Date.now()
-        }
-      ]
-    })
+    
+    // setEffieInfo({
+    //   ...effieInfo,
+    //   allNotes: [
+    //     ...effieInfo.allNotes,
+    //     {
+    //       id: Date.now() + '' + Math.ceil(Math.random() * 1000),
+    //       desc: ``,
+    //       createdAt: Date.now(),
+    //       updatedAt: Date.now()
+    //     }
+    //   ]
+    // })
   }
 
   let curList = [] as any
