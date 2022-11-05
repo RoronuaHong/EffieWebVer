@@ -92,6 +92,7 @@ export interface ITreeNodeProps<T> {
 //   }
 // }
 
+/* TODO: 将 VirtualTree 和 TreeNode 分开写 */
 const VirtualTree: FC<TVirtualTree> = ({
   data,
   onChildVisible
@@ -162,3 +163,4 @@ const TreeNode = ({
 
 
 export default VirtualTree
+
